@@ -12,12 +12,17 @@ beforeEach(() => {
     items.push(sample1);
 });
 
+//reset database
+afterEach(() => {
+    items.length = 0;
+});
+
 //tests
 
 describe("Get /items", () => {
     test("Get all items", async () => {
         const res = await request(app).get("/items");
-        
+
         expect(res.statusCode).toBe(200)
         expect(res.body).toEqual({items: [sample1]});
     })
@@ -65,7 +70,3 @@ describe("DELETE /items/:name", () => {
 })
 
 
-//reset database
-afterEach(() => {
-    items.length = 0;
-});
